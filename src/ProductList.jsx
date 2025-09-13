@@ -244,6 +244,7 @@ function ProductList({ onHomeClick }) {
         e.preventDefault();
         setShowCart(true); // Set showCart to true when cart icon is clicked
     };
+
     const handlePlantsClick = (e) => {
         e.preventDefault();
         setShowPlants(true); // Set showAboutUs to true when "About Us" link is clicked
@@ -262,7 +263,14 @@ function ProductList({ onHomeClick }) {
             ...prevState,
             [plant.name]: true,
         }));
+
+        alert("item added to cart");
     };
+
+    const calculateTotalQuantity = () => {
+        return CartItems ? CartItems.reduce((total, item) => total + item.quantity, 0) : 0;
+    };
+
     return (
         <div>
             <div className="navbar" style={styleObj}>
@@ -296,7 +304,7 @@ function ProductList({ onHomeClick }) {
                                         <img className="product-image" src={plant.image} alt={plant.name} />
                                         <div className="product-title">{plant.name}</div>
                                         <div className="product-description">{plant.description}</div>
-                                        <div className="product-cost">${plant.cost}</div>
+                                        <div className="product-cost">{plant.cost}</div>
                                         <button className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
                                     </div>
                                 ))}
