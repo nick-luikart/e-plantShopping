@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import ProductList from './ProductList';
 
 export const CartSlice = createSlice({
   name: 'cart',
@@ -17,6 +18,7 @@ export const CartSlice = createSlice({
     },
     removeItem: (state, action) => {
         state.items = state.items.filter(item => item.name !== action.payload);
+        
     },
     updateQuantity: (state, action) => {
         const { name, quantity } = action.payload;
@@ -30,4 +32,4 @@ export const CartSlice = createSlice({
 
 export const { addItem, removeItem, updateQuantity } = CartSlice.actions;
 
-export default CartSlice.reducers;
+export default CartSlice.reducer;
